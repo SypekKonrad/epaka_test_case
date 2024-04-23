@@ -1,0 +1,175 @@
+Test Scenario: Search Functionality
+
+Objective: Verify that the search functionality of the franchise points search engine functions correctly and provides accurate results.
+
+Preconditions:
+
+    1.The user has access to the internet and a web browser.
+    2.The user is on the homepage of the epaka.pl website.
+    3.The user is familiar with the search functionality of the website.
+
+Test Cases:
+
+    1.Search by City Name:
+
+      1.Enter the website URL in the browser address bar and press Enter.
+      2.Navigate to the "Punkty nadań" section of the website by clicking on the appropriate link in the navigation menu.
+      3.Locate the search input field labeled "Wpisz nazwę miejscowości".
+      4.Type the name of a city "Siedlce" in the search input field.
+      5.Verify that the search results are displayed below the search input field.
+      6.Inspect the search results to ensure they include points located in Siedlce.
+      7.Click on one of the search results to view detailed information about the selected point.
+      8.Verify that the detailed information includes the correct address, opening hours, contact information, and available services.
+
+      Expected Results:
+
+        The search functionality should accurately retrieve and display points located in the specified city.
+        The search results should contain addresses, opening hours, contact information, and available services relevant to points in Siedlce.
+        The names of the points in the search results should clearly indicate their association with Siedlce.
+        The search results should not include points from other cities or locations with similar names.
+        Detailed information about each point should be correct and up-to-date.
+
+    2.Search by Post Code:
+
+      1.Enter the website URL in the browser address bar and press Enter.
+      2.Navigate to the "Punkty nadań" section of the website by clicking on the appropriate link in the navigation menu.
+      3.Locate the search input field labeled "Wpisz nazwę miejscowości".
+      4.Type the postal code of a city "08-110" in the search input field.
+      5.Verify that the search results are displayed below the search input field.
+      6.Inspect the search results to ensure they include points located in Siedlce.
+      7.Click on one of the search results to view detailed information about the selected point.
+      8.Verify that the detailed information includes the correct address, opening hours, contact information, and available services.
+
+      Expected Results:
+
+        The search functionality should accurately retrieve and display points located in the specified city.
+        The search results should contain addresses, opening hours, contact information, and available services relevant to points in Siedlce.
+        The names of the points in the search results should clearly indicate their association with Siedlce.
+        The search results should not include points from other cities or locations with similar names.
+        Detailed information about each point should be correct and up-to-date.
+
+    3.Search by Abbreviated City Name:
+
+      1.Enter the website URL in the browser address bar and press Enter.
+      2.Navigate to the "Punkty nadań" section of the website by clicking on the appropriate link in the navigation menu.
+      3.Locate the search input field labeled "Wpisz nazwę miejscowości".
+      4.Type the abbreviated name of a city "sie" in the search input field.
+      5.Wait for the search engine to display hints for probable cities starting with the entered abbreviation.
+      6.Verify that the search engine displays hints for probable cities starting with "sie" in their names.
+      7.Click on one of the suggested cities in the hint list.
+      8.Verify that the search input field is populated with the full name of the selected city.
+      9.Verify that the search results include points located in the city corresponding to the selected hint.
+      10.Inspect the search results to ensure they contain addresses, opening hours, contact information, and available services relevant to points in the selected city.
+      11.Verify that the names of the points in the search results clearly indicate their association with the selected city.
+      12.The search results should not include points from other cities or locations with similar names.
+      13.Detailed information about each point should be correct and up-to-date.
+
+      Expected Results:
+
+        The search engine should display hints for probable cities starting with the entered abbreviation "sie".
+        Selecting a city from the hint list should populate the search input field with the full name of the selected city.
+        The search results should include points located in the city corresponding to the selected hint.
+        The search results should contain addresses, opening hours, contact information, and available services relevant to points in the selected city.
+        The names of the points in the search results should clearly indicate their association with the selected city.
+        The search results should not include points from other cities or locations with similar names.
+        Detailed information about each point should be correct and up-to-date.
+
+      4.Search by Abbreviated Post Code:
+
+        1.Enter the website URL in the browser address bar and press Enter.
+        2.Navigate to the "Punkty nadań" section of the website by clicking on the appropriate link in the navigation menu.
+        3.Locate the search input field labeled "Wpisz nazwę miejscowości".
+        4.Type the abbreviated name of a city "08" in the search input field.
+        5.Wait for the search engine to display hints for probable cities starting with the entered abbreviation.
+        6.Verify that the search engine displays hints for probable cities starting with "08" in their names.
+        7.Click on one of the suggested cities in the hint list.
+        8.Verify that the search input field is populated with the full name of the selected city.
+        9.Verify that the search results include points located in the city corresponding to the selected hint.
+        10.Inspect the search results to ensure they contain addresses, opening hours, contact information, and available services relevant to points in the selected city.
+        11.Verify that the names of the points in the search results clearly indicate their association with the selected city.
+        12.The search results should not include points from other cities or locations with similar names.
+        13.Detailed information about each point should be correct and up-to-date.
+
+        Expected Results:
+
+          The search engine should display hints for probable cities starting with the entered abbreviation "08".
+          Selecting a city from the hint list should populate the search input field with the full name of the selected city.
+          The search results should include points located in the city corresponding to the selected hint.
+          The search results should contain addresses, opening hours, contact information, and available services relevant to points in the selected city.
+          The names of the points in the search results should clearly indicate their association with the selected city.
+          The search results should not include points from other cities or locations with similar names.
+          Detailed information about each point should be correct and up-to-date.
+
+      5.Search by Special Characters:
+
+        1.Enter the website URL in the browser address bar and press Enter.
+        2.Navigate to the "Punkty nadań" section of the website by clicking on the appropriate link in the navigation menu.
+        3.Locate the search input field labeled "Wpisz nazwę miejscowości".
+        4.Type special characters "!@#$%" in the search input field.
+        5.Wait for the search engine to display hints for probable cities starting with the entered abbreviation.
+        6.Verify that the search results do not display any points or an error message.
+        7.Inspect the search input field to ensure it does not contain any suggested cities or values.
+        8.Verify that there are no visible errors or unexpected behavior on the page.
+
+        Expected Results:
+
+          The search engine should not return any points or suggestions when special characters are entered.
+          The search input field should not contain any suggested cities or values after typing special characters.
+          There should be no visible errors or unexpected behavior on the page.
+
+
+      6.Search by City Name with Additional Filters:
+
+        1.Enter the website URL in the browser address bar and press Enter.
+        2.Navigate to the "Punkty nadań" section of the website by clicking on the appropriate link in the navigation menu.
+        3.Locate the search input field labeled "Wpisz nazwę miejscowości".
+        4.Type the name of a city "Siedlce" in the search input field.
+        5.check the "Teraz otwarte" checkbox.
+        6.Optionally, check the "Płatność kartą" checkbox.
+        7.Press the "Search" button or press Enter on the keyboard.
+        8.Verify that the search results are displayed below the search input field.
+        9.Inspect the search results to ensure they include points located in Siedlce.
+        10.If the "Teraz otwarte" checkbox was checked:
+            Verify that the search results only include points that are currently open.
+        11.If the "Płatność kartą" checkbox was checked:
+            Verify that the search results only include points that accept payment by card.
+        12.Click on one of the search results to view detailed information about the selected point.
+        13.Verify that the detailed information includes the correct address, opening hours, contact information, and available services.
+
+        Expected Results:
+
+          The search functionality should accurately retrieve and display points located in the specified city.
+          The search results should contain addresses, opening hours, contact information, and available services relevant to points in Siedlce.
+          The names of the points in the search results should clearly indicate their association with Siedlce.
+          If the "Teraz otwarte" checkbox was checked, the search results should only include points that are currently open.
+          If the "Płatność kartą" checkbox was checked, the search results should only include points that accept payment by card.
+          The search results should not include points from other cities or locations with similar names.
+          Detailed information about each point should be correct and up-to-date.
+
+      6.Responsiveness of the Website:
+
+        1.Open the website URL in a web browser.
+        2.Resize the browser window to simulate different screen sizes such as desktop, tablet, mobile.
+        3.Navigate to the "Punkty nadań" section of the website.
+        4.Verify that the layout of the website adjusts smoothly and responsively to the changes in screen size.
+        5.Check that all elements of the page, including navigation menu, search input field, search results, and detailed information, remain accessible and usable at different screen sizes.
+        6.If applicable, interact with dropdown menus, buttons, and other interactive elements to ensure they function correctly on different devices.
+        7.Verify that images and text content are properly scaled and formatted for optimal readability on each screen size.
+        8.Test any interactive features such as hovering over elements or clicking on buttons to confirm their responsiveness.
+        9.Repeat steps 2-8 on multiple devices and browsers to ensure cross-browser and cross-device compatibility.
+
+        Expected Results:
+
+          The website layout should adjust smoothly and responsively to changes in screen size, maintaining usability and readability.
+          All elements of the page should remain accessible and functional across different screen sizes and devices.
+          Images and text content should be properly scaled and formatted for optimal readability on each screen size.
+          Interactive features should respond correctly to user input without any issues.
+
+
+Pass Criteria:
+
+  All steps are executed successfully, and the expected results match the observed results.
+
+Fail Criteria:
+
+  Any step fails to execute successfully, or the observed results do not match the expected results.
