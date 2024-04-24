@@ -59,6 +59,31 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
 
         # time.sleep(4)
 
+    def test_search_by_post_code(self):
+
+        punkty_nadan_link = self.driver.find_element(By.LINK_TEXT, "Punkty nadań")
+        punkty_nadan_link.click()
+
+        searchbar = self.driver.find_element(By.ID, "pointSearch")
+        searchbar.send_keys("08-110")
+        searchbar.send_keys(Keys.RETURN)
+
+        time.sleep(2)
+
+        searchbar2 = WebDriverWait(self.driver, 2).until(EC.visibility_of_element_located((By.ID, "pointSearch")))
+        searchbar2.click()
+        searchbar2.send_keys(Keys.RETURN)
+        print('znaleziono diva z siedlcami')
+
+        card_element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "h3.font-weight-800.text-black.font-size-22px")))
+        html_content = card_element.get_attribute('outerHTML')
+
+        if "Siedlce" in html_content:
+            print("'Siedlce' znajdują się w html_content")
+
+        self.assertTrue("Siedlce" in html_content)
+
+
 
 
 
