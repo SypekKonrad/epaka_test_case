@@ -74,7 +74,7 @@ Test Cases:
         The search results should not include points from other cities or locations with similar names.
         Detailed information about each point should be correct and up-to-date.
 
-      4.Search by Abbreviated Post Code:
+    4.Search by Abbreviated Post Code:
 
         1.Enter the website URL in the browser address bar and press Enter.
         2.Navigate to the "Punkty nadań" section of the website by clicking on the appropriate link in the navigation menu.
@@ -146,7 +146,7 @@ Test Cases:
           The search results should not include points from other cities or locations with similar names.
           Detailed information about each point should be correct and up-to-date.
 
-      6.Responsiveness of the Website:
+      7.Responsiveness of the Website:
 
         1.Open the website URL in a web browser.
         2.Resize the browser window to simulate different screen sizes such as desktop, tablet, mobile.
