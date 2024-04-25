@@ -15,15 +15,14 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
 
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--start-maximized")
+        # chrome_options.add_argument("--headless=new")
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.get("https://www.epaka.pl")
         print('setup/driver get')
         self.accept_cookies()
 
     def driverQuit(self):
-
         self.driver.quit()
-        print('quit')
 
     def accept_cookies(self):
 
@@ -61,7 +60,7 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
 
     def test_search_by_post_code(self):
 
-        punkty_nadan_link = self.driver.find_element(By.LINK_TEXT, "Punkty nadań")
+        punkty_nadan_link = WebDriverWait(self.driver, 1).until(EC.visibility_of_element_located((By.LINK_TEXT, "Punkty nadań")))
         punkty_nadan_link.click()
 
         searchbar = self.driver.find_element(By.ID, "pointSearch")
@@ -73,6 +72,7 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
         searchbar2 = WebDriverWait(self.driver, 2).until(EC.visibility_of_element_located((By.ID, "pointSearch")))
         searchbar2.click()
         searchbar2.send_keys(Keys.RETURN)
+
         print('znaleziono diva z siedlcami')
 
         card_element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "h3.font-weight-800.text-black.font-size-22px")))
@@ -83,9 +83,43 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
 
         self.assertTrue("Siedlce" in html_content)
 
+    def test_search_by_abbreviated_city_name(self):
+
+        punkty_nadan_link = self.driver.find_element(By.LINK_TEXT, "Punkty nadań")
+        punkty_nadan_link.click()
+
+        searchbar = self.driver.find_element(By.ID, "pointSearch")
+        searchbar.send_keys("sie")
+        print('znaleziono wyniki w searchbarze')
 
 
+        dropdown_elements = WebDriverWait(self.driver, 5).until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "tt-menu")))
 
+        for element in dropdown_elements:
+            print('szuka elementu')
+            dropdown_options = WebDriverWait(self.driver, 5).until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "tt-selectable")))
+            print('znalazlo element')
+
+            for option in dropdown_options:
+
+
+                option = element.find_element(By.CLASS_NAME, "tt-selectable")
+                option_text = option.text
+                if "dlce" in option_text:
+                    print('Siedlce found')
+                    option.click()
+                    print('kliknieto')
+
+                card_element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "h3.font-weight-800.text-black.font-size-22px")))
+                html_content = card_element.get_attribute('outerHTML')
+                if "Siedlce" in html_content:
+                    print("'Siedlce' znajdują się w html_content")
+
+                self.assertTrue("Siedlce" in html_content)
+
+
+     # def test_search_by_abbreviated_city_name(self):
+     #     pass
 
 
 
