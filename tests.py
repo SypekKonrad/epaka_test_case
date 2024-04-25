@@ -19,6 +19,7 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
         # chrome_options.add_argument("--headless=new")
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.get("https://www.epaka.pl")
+        self.base_url = ("https://www.epaka.pl/punkty-kurierskie")
         print('setup/driver get')
         self.accept_cookies()
 
@@ -37,6 +38,7 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
     def test_search_by_city_name(self):
 
         punkty_nadan_link = self.driver.find_element(By.LINK_TEXT, "Punkty nadań")
+        time.sleep(1)
         punkty_nadan_link.click()
 
         searchbar = self.driver.find_element(By.ID, "pointSearch")
@@ -62,6 +64,7 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
     def test_search_by_post_code(self):
 
         punkty_nadan_link = WebDriverWait(self.driver, 1).until(EC.visibility_of_element_located((By.LINK_TEXT, "Punkty nadań")))
+        time.sleep(1)
         punkty_nadan_link.click()
 
         searchbar = self.driver.find_element(By.ID, "pointSearch")
@@ -87,6 +90,7 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
     def test_search_by_abbreviated_city_name(self):
 
         punkty_nadan_link = self.driver.find_element(By.LINK_TEXT, "Punkty nadań")
+        time.sleep(1)
         punkty_nadan_link.click()
 
         searchbar = self.driver.find_element(By.ID, "pointSearch")
@@ -143,6 +147,7 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
     def test_search_by_special_characters(self):
 
         punkty_nadan_link = self.driver.find_element(By.LINK_TEXT, "Punkty nadań")
+        time.sleep(1)
         punkty_nadan_link.click()
 
         searchbar = self.driver.find_element(By.ID, "pointSearch")
@@ -163,6 +168,7 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
     def test_search_by_city_name_with_additional_filters(self):
 
         punkty_nadan_link = self.driver.find_element(By.LINK_TEXT, "Punkty nadań")
+        time.sleep(1)
         punkty_nadan_link.click()
 
         card_payment_checkbox_label = self.driver.find_element(By.XPATH,"//label[input[@id='platnosc_karta' or contains(text(), 'Płatność kartą')]]")
@@ -183,7 +189,7 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
         dropdown_option = dropdown_menu.find_element(By.CLASS_NAME, "tt-suggestion")
         dropdown_option.click()
         print('dropdown siedlce click')
-        card_element = WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "h3.font-weight-800.text-black.font-size-22px")))
+        card_element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "h3.font-weight-800.text-black.font-size-22px")))
         print('znaleziono diva z siedlcami')
         html_content = card_element.get_attribute('outerHTML')
 
@@ -195,5 +201,20 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
 
         self.assertTrue("Siedlce" in html_content)
 
+    def test_responsiveness(self):
+        viewports = [(320, 480), (768, 1024), (1366, 768)]
+
+        for width, height in viewports:
+            self.driver.set_window_size(width, height)
+            self.driver.get(self.base_url)
+            self.assertTrue(self.is_responsive(), f"Page is not responsive at {width}x{height}")
+
+    def is_responsive(self):
+        try:
+            element = self.driver.find_element(By.ID, "pointSearch")
+            return element.is_displayed()
+        except Exception as e:
+            print(f"Exception: {e}")
+            return False
 
 
