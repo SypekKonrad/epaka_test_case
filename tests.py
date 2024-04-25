@@ -122,6 +122,7 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
     def test_search_by_abbreviated_post_code(self):
 
         punkty_nadan_link = self.driver.find_element(By.LINK_TEXT, "Punkty nadań")
+        time.sleep(1)
         punkty_nadan_link.click()
 
         searchbar = self.driver.find_element(By.ID, "pointSearch")
@@ -159,7 +160,40 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
             print("null")
             pass
 
+    def test_search_by_city_name_with_additional_filters(self):
 
+        punkty_nadan_link = self.driver.find_element(By.LINK_TEXT, "Punkty nadań")
+        punkty_nadan_link.click()
+
+        card_payment_checkbox_label = self.driver.find_element(By.XPATH,"//label[input[@id='platnosc_karta' or contains(text(), 'Płatność kartą')]]")
+        card_payment_checkbox_span = card_payment_checkbox_label.find_element(By.CSS_SELECTOR, "span.checkmark.mt-1")
+        card_payment_checkbox_span.click()
+        print('karta klik')
+
+        open_now_checkbox_label = self.driver.find_element(By.XPATH,"//label[input[@id='teraz_otwarte' or contains(text(), 'Teraz otwarte')]]")
+        open_now_checkbox_span = open_now_checkbox_label.find_element(By.CSS_SELECTOR, "span.checkmark.mt-1")
+        open_now_checkbox_span.click()
+        print('otwarte klik')
+
+        searchbar = self.driver.find_element(By.ID, "pointSearch")
+        searchbar.send_keys("Siedlce")
+        print('znaleziono siedlce w searchbarze')
+
+        dropdown_menu = WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located((By.CLASS_NAME, "tt-menu")))
+        dropdown_option = dropdown_menu.find_element(By.CLASS_NAME, "tt-suggestion")
+        dropdown_option.click()
+        print('dropdown siedlce click')
+        card_element = WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "h3.font-weight-800.text-black.font-size-22px")))
+        print('znaleziono diva z siedlcami')
+        html_content = card_element.get_attribute('outerHTML')
+
+        if "Siedlce" in html_content:
+            print("'Siedlce' znajdują się w html_content")
+        else:
+            print('null')
+            self.fail()
+
+        self.assertTrue("Siedlce" in html_content)
 
 
 
