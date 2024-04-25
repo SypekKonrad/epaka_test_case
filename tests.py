@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
@@ -118,8 +119,27 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
                 self.assertTrue("Siedlce" in html_content)
 
 
-     # def test_search_by_abbreviated_city_name(self):
-     #     pass
+    def test_search_by_abbreviated_post_code(self):
+
+        punkty_nadan_link = self.driver.find_element(By.LINK_TEXT, "Punkty nadań")
+        punkty_nadan_link.click()
+
+        searchbar = self.driver.find_element(By.ID, "pointSearch")
+        searchbar.send_keys("08")
+        print('szuka')
+
+        try:
+
+            dropdown_menu = WebDriverWait(self.driver, 5).until(
+                EC.visibility_of_element_located((By.CLASS_NAME, "tt-menu")))
+            dropdown_options = dropdown_menu.find_elements(By.CLASS_NAME, "tt-selectable")
+            print('znalazlo')
+            self.fail("nie powinno znaleźć")
+
+        except TimeoutException:
+            print("null")
+            pass
+
 
 
 
