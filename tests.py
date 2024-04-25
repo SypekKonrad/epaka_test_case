@@ -130,8 +130,7 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
 
         try:
 
-            dropdown_menu = WebDriverWait(self.driver, 5).until(
-                EC.visibility_of_element_located((By.CLASS_NAME, "tt-menu")))
+            dropdown_menu = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.CLASS_NAME, "tt-menu")))
             dropdown_options = dropdown_menu.find_elements(By.CLASS_NAME, "tt-selectable")
             print('znalazlo')
             self.fail("nie powinno znaleźć")
@@ -140,6 +139,25 @@ class EpakaSearchFunctionalityTest(unittest.TestCase):
             print("null")
             pass
 
+    def test_search_by_special_characters(self):
+
+        punkty_nadan_link = self.driver.find_element(By.LINK_TEXT, "Punkty nadań")
+        punkty_nadan_link.click()
+
+        searchbar = self.driver.find_element(By.ID, "pointSearch")
+        searchbar.send_keys("!@,.")
+        print('szuka')
+
+        try:
+
+            dropdown_menu = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.CLASS_NAME, "tt-menu")))
+            dropdown_options = dropdown_menu.find_elements(By.CLASS_NAME, "tt-selectable")
+            print('znalazlo')
+            self.fail("nie powinno znaleźć")
+
+        except TimeoutException:
+            print("null")
+            pass
 
 
 
